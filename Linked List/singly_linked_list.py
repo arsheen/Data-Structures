@@ -3,76 +3,81 @@
 #get_size(),find(data),add(data),remove(data)
 
 class Node:
-    def __init__(self,data,n=None):
+    def __init__(self, data):
         self.data = data
-        self.next = n
-    def set_data(self,data):
-        self.data = data
-    def get_data(self):
-        return self.data
-    def set_next_node(self, n):
-        self.next = n
-    def get_next_node(self):
-        return self.next
+        self.next = None
 
 class LinkedList:
     def __init__(self, root=None):
         self.root = root
         self.size = 0
+
+    def add_node(self, val):
+        node = Node(val)
+        self.root = node
+        self.size += 1
+        return node
+
+    def remove_node(self, val):
+        prev = None
+        curr = self.root
+        while (curr):
+            if curr.data == val:
+                if prev:
+                    prev = curr.next
+                else:
+                     self.root = curr.next
+            self.size -=1
+            return True
+
+            prev = curr
+            curr = curr.next
+
     def get_size(self):
         return self.size
-    def add(self,data):
-        new_node = Node(data, self.root)
-        self.root = new_node
-        self.size +=1
-    def remove(self, data):
-        this_node = self.root
-        prev_node = None
-        while(this_node):
-            if this_node.get_data == data:
-                if prev_node:
-                    prev_node.set_next_node(this_node.get_next_node())
-                else:
-                    self.root = this_node.get_next()
-                self.size -=1
-                return "\nRemoved"
-            else:
-                prev_node = this_node
-                this_node.get_next_node()
-            return "\nNot Removed: Not in list"
-    def find(self,data):
-        this_node = self.root
-        while(this_node):
-            if this_node.get_data() == data:
-                return "\nFound"
-            elif this_node.get_next_node() == None:
-                return "\nNot Found"
-            else:
-                this_node = this_node.get_next_node()
+
+    def find(self,val):
+        curr = self.root
+        while(curr):
+            if curr.data == val:
+                return "Found"
+            curr = curr.next
+        return "Not Found"
+
     def print_list(self):
         node = self.root
         ll = []
         while(node):
-            ll.append(node.get_data())
-            node = node.get_next_node()
+            ll.append(node.data)
+            node = node.next
         print(ll)
-
 
 def main():
     myList = LinkedList()
-    myList.add(5)
-    myList.add(9)
-    myList.add(3)
-    myList.add(8)
-    myList.add(9)
+    myList.add_node(15)
+    myList.add_node(9)
+    myList.add_node(3)
+    myList.add_node(8)
+    myList.add_node(25)
     print("size=" + str(myList.get_size()))
-    myList.remove(8)
+    print("Remove 8", myList.remove_node(8))
     print("size=" + str(myList.get_size()))
-    print("Remove 15", myList.remove(15))
+    print("Remove 15", myList.remove_node(15))
     print("size=" + str(myList.get_size()))
     print("Find 25", myList.find(25))
     myList.print_list()
 
 main()
+
+
+
+
+
+
+
+
+
+
+
 
 
