@@ -20,11 +20,19 @@ class Stack():
         if self.is_empty():
             print("List is empty. No elements to pop")
             return
-        print(self.stack.pop())
+        print("Element popped: ", self.stack.pop())
+        self.size -= 1
+
+    def peak(self):
+        if self.is_empty():
+            print("List is empty. No elements at the peak")
+            return
+        print("Peak of stack: ", self.stack.pop())
         self.size -= 1
 
     def display(self):
-        print(self.stack)
+        print("Stack: ", self.stack)
+
 
 def main():
     s = Stack()
@@ -35,6 +43,7 @@ def main():
     s.display()
     s.pop()
     s.pop()
+    s.peak()
     print("Size: ", s.stack_size())
     s.pop()
     s.pop()
