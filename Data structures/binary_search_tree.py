@@ -1,5 +1,4 @@
 #BST using recursion
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -106,9 +105,43 @@ class BinarySearchTree:
         return self.__max_depth(self.root)
 
     def __max_depth(self, node):
+        """
+
+        :param node:
+        :return:
+        """
         if node == None:
             return 0
         return max(self.__max_depth(node.lchild), self.__max_depth(node.rchild)) + 1
+
+    def delete(self, val):
+        self.root = self.__delete(self.root, val)
+
+    def __delete(self, p, x):
+        if p is None:
+            print("Tree does not exist")
+            return
+        if x <  p.data:
+            p.lchild = self.__delete(p.lchild, x)
+        elif x > p.data:
+            p.rchild = self.__delete(p.rchild, x)
+        else:
+            if p.lchild is not None and p.rchild is not None:
+                s = p.rchild
+                while s.lchild:
+                    s = s.lchild
+                p.info = s.data
+                p.rchild = self.__delete(p.rchild, s.data)
+            else:
+                if p.lchild is not None:
+                    ch = p.lchild
+                else:
+                    ch = p.rchild
+            p = ch
+        return p
+
+
+
 
 
 def main():
@@ -124,8 +157,9 @@ def main():
     print("Preorder:  ", bt.preorder_traversal())
     print("Inorder:   ", bt.inorder_traversal())
     print("Postorder: ", bt.postorder_traversal())
-    print("Height:    ", bt.max_depth())
+    print("Height:    ", bt.max_depth(), "\n\n")
     bt.search(7)
+    bt.delete(70)
     bt.display()
 
 
