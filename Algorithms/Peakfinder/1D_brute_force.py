@@ -3,8 +3,7 @@ def peak_finder(array):
     for i in range(len(array)):
         if array[i-1]<=array[i]>=array[i+1]:
             return i
-        else:
-            return "No peaks"
+    return "No peaks"
 
 def main():
     end = "y"
