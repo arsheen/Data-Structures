@@ -4,7 +4,9 @@
 # When data is in sorted order          -> n-1 comaprisons, 2(n-1) moves -> O(n) complexity
 # When data is in reverse sorted order  -> i comparisons (i.e; n(n-1)/2) and i+2 moves -> O(n**2) complexity
 # When data is in random order          -> O(n**2) complexity
-
+# Stable, In -place sort
+# Good option when array considered is small and almost sorted
+# Disadvantage: Many movements
 
 def insertion_sort(array):
     for i in range(1, len(array)):
