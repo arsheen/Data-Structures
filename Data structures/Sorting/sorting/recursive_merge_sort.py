@@ -1,3 +1,7 @@
+#Requires an extra list to store n elements of array
+#In place merge sort does exist but the run time is worse than that of the regular merge sort.
+#In place merge sort is almost never used
+
 def merge_sort(array):
     if len(array) <= 1:
         return array
